@@ -1,0 +1,12 @@
+{
+    "apps" : [{
+        "name"        : "koa-build",
+        "script"      : "app.js",
+        "watch"       : "true",
+        "node_args"   : "--harmony-async-await",
+        "env": {
+            "PORT": 3210,
+            "DEBUG": "*"
+        }
+    }]
+}
