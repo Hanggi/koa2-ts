@@ -2,7 +2,8 @@
     "apps" : [{
         "name"        : "koa-build",
         "script"      : "app.js",
-        "watch"       : "true",
+        "ignore_watch": ["node_modules"],
+        "watch"       : true,
         "node_args"   : "--harmony",
         "env": {
             "PORT": 3210,
