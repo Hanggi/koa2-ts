@@ -6,7 +6,7 @@ module.exports = (app) => {
         .get('/', async (ctx, next) => {
             ctx.body = 'koa2 build';
         })
-        .get('/qwe', async function (ctx, next) {
+        .get('/qwe', async (ctx, next) => {
 
             await ctx.render('home', {
                 name: 'koa2 '
