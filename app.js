@@ -5,6 +5,7 @@ const path = require('path');
 const config = require('./config.json');
 app.keys = config.keys;
 
+const route = require('./router');
 
 
 // koa-logger
@@ -43,18 +44,9 @@ render(app, {
 });
 app.context.render = co.wrap(app.context.render);
 
-// koa-router
-const router = require('koa-router')();
-router.get('/qwe', async function (ctx, next) {
-    console.log('123')
+// run route
+route(app);
 
-    await ctx.render('home', {
-        name: 'koa2 '
-    });
-});
-app
-    .use(router.routes())
-    .use(router.allowedMethods());
 
 
 app.use(async (ctx, next) => {
