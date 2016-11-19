@@ -1,5 +1,4 @@
 {
-
     "apps" : [{
         "name"        : "koa-build",
         "script"      : "app.js",

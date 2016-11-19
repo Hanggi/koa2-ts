@@ -1,19 +1,15 @@
 const Koa = require('koa');
 const app = new Koa();
-
 const path = require('path');
+
+const config = require('./config.json');
+app.keys = config.keys;
+
+
 
 // koa-logger
 const logger = require('koa-logger');
 app.use(logger());   // deprecated
-
-
-// const co = require('co');
-
-
-app
-    .use(router.routes())
-    .use(router.allowedMethods());
 
 // koa-commpress
 const compress = require('koa-compress');
@@ -25,6 +21,7 @@ const compress = require('koa-compress');
 //     flush: require('zlib').Z_SYNC_FLUSH
 // }));
 
+
 // koa-static
 const serve = require('koa-static');
 app.use(serve(__dirname + '/public'));   //deprecated
@@ -33,8 +30,10 @@ app.use(serve(__dirname + '/public'));   //deprecated
 const favicon = require('koa-favicon');
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
+
 // koa-ejs
 const render = require('koa-ejs');
+const co = require('co');
 render(app, {
     root: path.join(__dirname, 'views'),
     layout: null,
@@ -53,6 +52,9 @@ router.get('/qwe', async function (ctx, next) {
         name: 'koa2 '
     });
 });
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 
 app.use(async (ctx, next) => {
@@ -67,11 +69,8 @@ app.use(async (ctx, next) => {
 
 
 
-app.use(ctx => {
-    ctx.body = 'listening @ port: 3210';
+
+
+app.listen(config.port, function () {
+    console.log(`listening on port @${config.port}`);
 });
-
-
-
-
-app.listen(3210);

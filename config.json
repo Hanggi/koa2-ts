@@ -1,0 +1,9 @@
+{
+    "app": "koa-build",
+    "port": 3210,
+    "keys": ["koa2", "nodejs"],
+    "mongo": {
+        "host": "localhost",
+        "port": 27017
+    }
+}
