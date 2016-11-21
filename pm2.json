@@ -2,7 +2,7 @@
     "apps" : [{
         "name"        : "koa-build",
         "script"      : "app.js",
-        "ignore_watch": ["node_modules"],
+        "ignore_watch": ["node_modules", ".git"],
         "watch"       : true,
         "node_args"   : "--harmony",
         "env": {
