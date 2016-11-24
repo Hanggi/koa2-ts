@@ -7,8 +7,9 @@ module.exports = (app) => {
             ctx.body = 'koa2 build';
         })
         .get('/test', async (ctx, next) => {
-            console.log(ctx.query)
-            ctx.body = `This is the test page GET:${ctx.query}`;
+            let query = JSON.stringify(ctx.query);
+            console.log(typeof(query));
+            ctx.body = `This is the test page GET:${query}`;
         })
         .get('/qwe', async (ctx, next) => {
 
