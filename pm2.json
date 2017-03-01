@@ -4,10 +4,11 @@
         "script"      : "app.js",
         "ignore_watch": ["node_modules", ".git"],
         "watch"       : true,
-        "node_args"   : "--harmony",
+        "node_args"   : "",
         "env": {
             "PORT": 3210,
             "DEBUG": "*"
+    
         }
     }]
 }
