@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Hanggi/koa-build#readme",
   "dependencies": {
     "co": "^4.6.0",
-    "koa": "^2.2.0",
+    "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-ejs": "^4.0.0",
