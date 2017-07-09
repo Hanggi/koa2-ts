@@ -43,7 +43,7 @@ route(app);
 
 // 404
 app.use(async (ctx, next) => {
-	let error = new Error('Not Found');
+	let err = new Error('Not Found');
 	err.status = 404;
 	await next(err);
 });
