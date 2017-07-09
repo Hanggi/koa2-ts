@@ -11,12 +11,12 @@ function run_cmd(cmd, args, callback) {
     child.stdout.on('end', function() {callback(resp)})
 }
 
+console.log('Listening on port 5151');
 http.createServer(function(req, res) {
     handler(req, res, function (err) {
         res.statusCode = 404;
         res.end('no such location');
     })
-    console.log('Listening on port 5151')
 }).listen(5151);
 
 handler.on('error', function (err) {
