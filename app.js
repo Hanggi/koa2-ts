@@ -46,6 +46,7 @@ route(app);
 app.use(async (ctx, next) => {
 	try {
 		await next(); // wait until we execute the next function down the chain, then continue;
+		// 404 handle, throw 404 error
 		if (ctx.status === 404) {
         	ctx.throw(404);
     	}
