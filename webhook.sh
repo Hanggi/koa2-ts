@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEB_PATH='/root/hanggi/koa2-build'
+WEB_PATH='/root/koa2-build'
 
 echo "Start deployment!"
 cd $WEB_PATH
