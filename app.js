@@ -46,6 +46,9 @@ route(app);
 app.use(async (ctx, next) => {
 	try {
 		await next(); // wait until we execute the next function down the chain, then continue;
+		if (ctx.status === 404) {
+        	ctx.throw(404);
+    	}
 	} catch (err) {
 		console.log('get error')
 		ctx.body = { message: err.message };
