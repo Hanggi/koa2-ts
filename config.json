@@ -1,6 +1,6 @@
 {
     "app": "koa-build",
-    "port": 3210,
+    "port": 80,
     "keys": ["koa2", "nodejs"],
     "mongo": {
         "host": "localhost",
