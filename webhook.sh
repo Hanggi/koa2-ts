@@ -9,4 +9,6 @@ echo "Pulling source code"
 git clean -f
 git pull
 
-echo "ffff"
+echo "Done git pull."
+
+pm2 ls
