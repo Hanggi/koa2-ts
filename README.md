@@ -7,4 +7,4 @@ start with pm2
 $ bin/start.sh
 ```
 
-test222
+tes
