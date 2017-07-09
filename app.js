@@ -41,7 +41,14 @@ render(app, {
 // run route
 route(app);
 
+// 404
+app.use(async (ctx, next) => {
+	let error = new Error('Not Found');
+	err.status = 404;
+	await next(err);
+});
 
+// error handler
 app.use(async (ctx, next) => {
 	console.log('into async 1')
 	try {
