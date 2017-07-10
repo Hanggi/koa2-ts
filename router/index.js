@@ -4,7 +4,7 @@ const router = require('koa-router')();
 module.exports = (app) => {
     router
         .get('/', async (ctx, next) => {
-            ctx.body = 'koa2 build';
+            ctx.body = 'think ph build';
         })
         .get('/test', async (ctx, next) => {
             let query = JSON.stringify(ctx.query);
