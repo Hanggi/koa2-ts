@@ -44,14 +44,8 @@ render(app, {
 route(app);
 
 
-const mongoose = require('mongoose');
 
-let db = mongoose.connect(config.mongodb);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-	console.log("mongo connected");
-});
 
 
 // error handler
