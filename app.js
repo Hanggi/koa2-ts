@@ -3,6 +3,7 @@ const path = require('path');
 const favicon = require('koa-favicon');
 const logger = require('koa-logger');
 const compress = require('koa-compress');
+const bodyParser = require('koa-bodyparser');
 
 const serve = require('koa-static');
 const render = require('koa-ejs');
@@ -17,6 +18,7 @@ app.keys = config.keys;
 app.use(favicon(__dirname + '/public/favicon.ico'));
 // koa-logger
 app.use(logger());   // deprecated
+app.use(bodyParser());
 
 // koa-commpress
 // app.use(compress({
@@ -40,6 +42,16 @@ render(app, {
 });
 // run route
 route(app);
+
+
+const mongoose = require('mongoose');
+
+let db = mongoose.connect(config.mongodb);
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log("mongo connected");
+});
 
 
 // error handler
