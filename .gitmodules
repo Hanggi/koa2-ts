@@ -1,0 +1,3 @@
+[submodule "adm"]
+	path = adm
+	url = git@github.com:Hanggi/Angular-Dashboard-Material.git
