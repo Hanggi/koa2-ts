@@ -30,7 +30,7 @@ app.use(bodyParser());
 // }));
 
 // koa-static
-app.use(serve(__dirname + '/public'));   //deprecated
+// app.use(serve(__dirname + '/public'));   //deprecated
 
 // koa-ejs
 render(app, {
