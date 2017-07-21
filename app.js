@@ -58,7 +58,7 @@ app.use(async (ctx, next) => {
     	}
 	} catch (err) {
 		console.log('get error')
-		ctx.body = { message: err.message };
+		ctx.body = { message: err.message + '!' };
 		ctx.status = err.status || 500;
 	}
 });
