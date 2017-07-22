@@ -5,7 +5,7 @@ module.exports = (app) => {
     router
         .get('/', async (ctx, next) => {
             await ctx.render('home', {
-                name: 'think ph build '
+                name: 'think php build '
             });
             // ctx.body = 'think ph build';
         })
