@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Hanggi/koa-build#readme",
   "dependencies": {
-    "chalk": "^2.0.1",
+    "chalk": "^2.1.0",
     "co": "^4.6.0",
     "github-webhook-handler": "^0.6.0",
     "koa": "^2.3.0",
@@ -30,6 +30,6 @@
     "koa-logger": "^2.0.1",
     "koa-router": "^7.2.1",
     "koa-static": "^3.0.0",
-    "mongoose": "^4.11.4"
+    "mongoose": "^4.11.5"
   }
 }
