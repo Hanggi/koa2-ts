@@ -75,4 +75,12 @@ var num = 123;
 let float = 0.333;
 const PI = 3.1415926;
 
-console.log(`num: ${num}, float: ${float}, PI: ${PI}`);
+console.log(`num: ${num}, float: ${float}, PI: ${PI},`);
+
+/*
+ * 布尔
+ */
+let bool = true;
+if (bool) {
+    console.log("The bool is true!")
+}
