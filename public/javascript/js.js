@@ -81,6 +81,22 @@
 }
 
 /*
+ * 数组
+ */
+{
+    console.log("\n数组");
+    var mycars = new Array();
+    mycars[0] = "Saab";
+    mycars[1] = "Volvo";
+    mycars[2] = "BMW";
+
+    var mycars2 = new Array("Saab", "Volvo", "BMW");
+    console.log(mycars);
+
+    var arr = [1, "a", false, [2, "b"], function a() {console.log("hello a")}]
+    console.log(arr);
+}
+/*
  * 布尔
  */
 {
@@ -122,6 +138,8 @@
     }
     var myFather=new person("Bill","Gates",56,"blue");
     var myMother=new person("Steve","Jobs",48,"green");
+    myMother.gender = "male";
+    myMother["gender"] = "female";
     console.log(myMother);
 }
 

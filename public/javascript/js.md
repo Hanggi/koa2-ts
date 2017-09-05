@@ -84,6 +84,29 @@ const PI = 3.1415926;
 1 + (4 / 3)
 ```
 
+## 数组
+
+数值之后，紧接着就是数组。JS 数组也非常灵活，我们可以使用一些简单的方法去声明它。
+
+```js
+// 初始化声明
+var array = [1, 2, 3, 4];
+
+// 对象实例创建
+var mycars = new Array();
+mycars[0] = "Saab";
+mycars[1] = "Volvo";
+mycars[2] = "BMW";
+// 或者
+var mycars2 = new Array("Saab", "Volvo", "BMW");
+```
+
+JS 数组还有一个神奇之处就是你可以在里面放任何类型，可能也正是因为所有事物都是对象，所以所有事物都可以共生吧。
+
+```js
+var arr = [1, "a", false, [2, "b"], function f() {console.log("hello f")}]
+```
+
 ## 布尔值
 
 同样道理，简单使用 `true` 或 `false` 赋值即可。
@@ -103,6 +126,7 @@ if (bool) {
 function foo(x, y) {
     return x + y;
 }
+
 foo(1, 2);          // return 3
 ```
 
@@ -155,4 +179,11 @@ var myFather=new person("Bill","Gates",56,"blue");
 var myMother=new person("Steve","Jobs",48,"green");
 ```
 
+添加成员方法也非常简单，常见的有两种：
+
+```js
+person.gender = "male";
+// 或者
+person["gender"] = "female";
+```
 
