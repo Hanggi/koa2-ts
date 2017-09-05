@@ -48,3 +48,16 @@ String.prototype.hanggi = function () {console.log("String has a custom function
 console.log('\n"This is a custom function of String.".hanggi();');
 "This is a custom function of String.".hanggi();
 
+// var, let, const
+console.log("\nES6中的变量声明:");
+{
+    let a = 10;
+    var b = 1;
+}
+try {
+    console.log(a);
+} catch (e) {
+    console.log(`a is not defined!!`);
+}
+console.log(b);
+  
