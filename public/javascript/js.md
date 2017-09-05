@@ -150,6 +150,9 @@ function person(firstname, lastname, age, eyecolor) {
     this.age = age;
     this.eyecolor = eyecolor;
 }
+// 并用 new 创建实例
+var myFather=new person("Bill","Gates",56,"blue");
+var myMother=new person("Steve","Jobs",48,"green");
 ```
 
 
