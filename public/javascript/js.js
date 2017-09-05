@@ -95,6 +95,20 @@
 
     var arr = [1, "a", false, [2, "b"], function a() {console.log("hello a")}]
     console.log(arr);
+
+    var sort = [12, 4, 24, 51];
+    sort.sort(); 
+    function compare(value1, value2) {
+        if (value1 < value2) {
+            return -1;
+        } else if (value1 > value2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    sort.sort(compare);
 }
 /*
  * 布尔

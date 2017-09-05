@@ -107,6 +107,30 @@ JS 数组还有一个神奇之处就是你可以在里面放任何类型，可�
 var arr = [1, "a", false, [2, "b"], function f() {console.log("hello f")}]
 ```
 
+当然数组作为对象也有很多他自己的方法，常用的有以下几种：
+
+```js
+var arr = [1, 2, 3];
+arr.push(4);                // [1, 2, 3, 4]
+arr.pop();                  // [1, 2, 3]
+var sort = [12, 4, 24, 51];
+sort.sort();                // [12, 24, 4, 51] 因为他会把每一项转换为字符串，所以排序如此
+// 这时我们可以个他一个比较函数
+function compare(value1, value2) {
+    if (value1 < value2) {
+        return -1;
+    } else if (value1 > value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+sort.sort(compare);         // [4, 12, 24, 51]
+```
+
+当然我们也可以给数组添加一些自定方法，同字符串。
+
 ## 布尔值
 
 同样道理，简单使用 `true` 或 `false` 赋值即可。
