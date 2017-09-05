@@ -1,3 +1,9 @@
+/*************************************************
+ * Javascript 教程演示代码
+ * 运行：
+ *      $ node js.js
+ *************************************************/
+
 
 /*
  * 字符串
@@ -41,3 +47,4 @@ console.log("   but keep the middle spaces   ".trim());
 String.prototype.hanggi = function () {console.log("String has a custom function of hanggi.");}
 console.log('\n"This is a custom function of String.".hanggi();');
 "This is a custom function of String.".hanggi();
+
