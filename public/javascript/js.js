@@ -69,18 +69,59 @@
 }
 
 /*
- * 数量
+ * 数值
  */
-var num = 123;
-let float = 0.333;
-const PI = 3.1415926;
+{
+    console.log("\n数值")
+    var num = 123;
+    let float = 0.333;
+    const PI = 3.1415926;
 
-console.log(`num: ${num}, float: ${float}, PI: ${PI},`);
+    console.log(`num: ${num}, float: ${float}, PI: ${PI},`);
+}
 
 /*
  * 布尔
  */
-let bool = true;
-if (bool) {
-    console.log("The bool is true!")
+{
+    let bool = true;
+    if (bool) {
+        console.log("The bool is true!")
+    }
 }
+
+/*
+ * 函数
+ */
+{
+    console.log("\n函数：");
+    function foo(x, y) {
+        return x + y;
+    }
+    console.log(`foo(1, 2) return ${foo(1,2)}`);
+}
+
+// 面向对象
+{
+    let person;
+    person = new Object();
+    person.firstname="Bill";
+    person.lastname="Gates";
+    person.age=56;
+    person.eyecolor="blue";
+
+    console.log(person)
+}
+
+{
+    function person(firstname, lastname, age, eyecolor) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.eyecolor = eyecolor;
+    }
+    var myFather=new person("Bill","Gates",56,"blue");
+    var myMother=new person("Steve","Jobs",48,"green");
+    console.log(myMother);
+}
+
