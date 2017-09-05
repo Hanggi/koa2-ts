@@ -113,6 +113,7 @@ var arr = [1, "a", false, [2, "b"], function f() {console.log("hello f")}]
 var arr = [1, 2, 3];
 arr.push(4);                // [1, 2, 3, 4]
 arr.pop();                  // [1, 2, 3]
+arr.length;                 // 3
 var sort = [12, 4, 24, 51];
 sort.sort();                // [12, 24, 4, 51] 因为他会把每一项转换为字符串，所以排序如此
 // 这时我们可以个他一个比较函数
@@ -148,7 +149,7 @@ function foo(x, y) {
 foo(1, 2);          // return 3
 ```
 
-我们还可以把一个函数付给一个变量
+我们还可以把一个函数付给一个变量。
 
 ```js
 var foo = function (a, b) {
@@ -156,7 +157,7 @@ var foo = function (a, b) {
 }
 ```
 
-ES6 中我们得到了新的箭头函数
+ES6 中我们得到了新的箭头函数。
 
 ```js
 var foo = (x, y) => {
@@ -178,7 +179,7 @@ var foo = (x, y) => x + y;
 // 箭头函数写法
 [1,2,3].map(x => x * x);
 ```
-另一个例子
+另一个例子，也是我们之前提到的数组排序的问题
 ```js
 // 正常函数写法
 var result = values.sort(function (a, b) {return a - b;});
