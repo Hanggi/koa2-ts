@@ -117,13 +117,7 @@ var sort = [12, 4, 24, 51];
 sort.sort();                // [12, 24, 4, 51] 因为他会把每一项转换为字符串，所以排序如此
 // 这时我们可以个他一个比较函数
 function compare(value1, value2) {
-    if (value1 < value2) {
-        return -1;
-    } else if (value1 > value2) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return value1 - value2;
 }
 
 sort.sort(compare);         // [4, 12, 24, 51]
@@ -160,6 +154,37 @@ foo(1, 2);          // return 3
 var foo = function (a, b) {
     return a * b;
 }
+```
+
+ES6 中我们得到了新的箭头函数
+
+```js
+var foo = (x, y) => {
+    return x + y;
+}
+// 甚至更简单
+var foo = (x, y) => x + y;
+// 这两个函数式等价的
+```
+
+箭头函数的一个用处是简化回调函数。
+
+```js
+// 正常函数写法
+[1,2,3].map(function (x) {
+  return x * x;
+});
+
+// 箭头函数写法
+[1,2,3].map(x => x * x);
+```
+另一个例子
+```js
+// 正常函数写法
+var result = values.sort(function (a, b) {return a - b;});
+
+// 箭头函数写法
+var result = values.sort((a, b) => a - b);
 ```
 
 #### 【穿插内容】js 中的对象

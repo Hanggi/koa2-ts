@@ -99,13 +99,7 @@
     var sort = [12, 4, 24, 51];
     sort.sort(); 
     function compare(value1, value2) {
-        if (value1 < value2) {
-            return -1;
-        } else if (value1 > value2) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return value1 - value2;
     }
     
     sort.sort(compare);
