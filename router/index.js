@@ -1,5 +1,6 @@
 
 const router = require('koa-router')();
+const send = require('koa-send');
 
 module.exports = (app) => {
     router
@@ -13,6 +14,10 @@ module.exports = (app) => {
             let query = JSON.stringify(ctx.query);
             console.log(typeof(query));
             ctx.body = `This is the test page GET:${query}`;
+        })
+        .get('/adm*', async (ctx, next) => {
+            console.log(__dirname);
+            await send(ctx, '/public/d/index.html');
         })
         .get('/qwe', async (ctx, next) => {
 
