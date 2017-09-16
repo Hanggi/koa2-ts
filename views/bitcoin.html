@@ -8,23 +8,32 @@
     </head>
 
     <body>
-        
-        Current:
+        汇率：<%-rate %>
+        <!-- Current: -->
 
         <div>
-            coinone: <span><%-co %> --- <%-(co/176.5) %></span>
+            coinone: <span><%-co %>₩ --- <%-(co / rate) %>￥</span>
         </div>
-        <div>
-            via: <span><%-vb %> --- <%-vb*176.5 %></span>
-        </div>
-        <b><%-(co/176.5 - vb) %></b>
+        <a href="https://coinone.co.kr/">COINONE</a>
         <br>
         <div>
-            bitflyer: <span><%-bf %></span>
+            viabtc: <span><%-vb %>￥ --- <%-vb * rate %>₩</span>
         </div>
+        <a href="https://www.viabtc.com/">VIABTC</a>
+        <br>
+        <br>
+        <b>差价：<%-(co/rate - vb) %>￥</b>
+        <br>
+        <!-- <div>
+            bitflyer: <span><%-bf %></span>
+        </div> -->
 
 
     </body>
-
+    <script>
+        setInterval(function () {
+            location.reload() 
+        }, 5000)
+    </script>
 
 </html>

@@ -30,6 +30,10 @@ module.exports = (app) => {
             ctx.body = `This is the test page GET:${query}`;
         })
         .get('/bitcoin', async (ctx, next) => {
+
+            console.log(typeof(ctx.query));
+            // let query = JSON.parse(ctx.query);
+
             let coinone = await doRequest('https://api.coinone.co.kr/ticker/');
             let bitflyer = await doRequest('https://lightning.bitflyer.jp/v1/getprices');
             let viabtc = await doRequest('https://api.viabtc.com/v1/market/ticker?market=BTCCNY');
@@ -39,7 +43,8 @@ module.exports = (app) => {
             await ctx.render('bitcoin', {
                 co: JSON.parse(coinone).last,
                 bf: bfRes,
-                vb: JSON.parse(viabtc).data.ticker.last
+                vb: JSON.parse(viabtc).data.ticker.last,
+                rate: ctx.query.rate || 178
             });
             
             // ctx.body = {
