@@ -29,7 +29,7 @@ module.exports = (app) => {
             console.log(typeof(query));
             ctx.body = `This is the test page GET:${query}`;
         })
-        .get('/bitcoin', async (ctx, next) => {
+        .get('/bcdiff', async (ctx, next) => {
 
             console.log(typeof(ctx.query));
             // let query = JSON.parse(ctx.query);
