@@ -27,12 +27,12 @@
     "koa-compress": "^2.0.0",
     "koa-ejs": "^4.1.0",
     "koa-favicon": "^2.0.0",
-    "koa-logger": "^3.0.1",
+    "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
-    "koa-send": "^4.1.0",
+    "koa-send": "^4.1.1",
     "koa-static": "^3.0.0",
-    "mongoose": "^4.11.9",
-    "nodemailer": "^4.1.0",
-    "request": "^2.81.0"
+    "mongoose": "^4.11.13",
+    "nodemailer": "^4.1.1",
+    "request": "^2.83.0"
   }
 }
