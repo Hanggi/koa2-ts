@@ -31,14 +31,14 @@ module.exports = (app) => {
         })
         .get('/bcdiff', async (ctx, next) => {
 
-            console.log(typeof(ctx.query));
+            // console.log(typeof(ctx.query));
             // let query = JSON.parse(ctx.query);
 
             let coinone = await doRequest('https://api.coinone.co.kr/ticker/');
             let bitflyer = await doRequest('https://lightning.bitflyer.jp/v1/getprices');
             let viabtc = await doRequest('https://api.viabtc.com/v1/market/ticker?market=BTCCNY');
 
-            console.log(JSON.parse(bitflyer)[0].rate)
+            // console.log(JSON.parse(bitflyer)[0].rate)
             bfRes = JSON.stringify(JSON.parse(bitflyer)[0].rate)
             await ctx.render('bitcoin', {
                 co: JSON.parse(coinone).last,
