@@ -6,15 +6,15 @@ const request = require('request');
 
 function doRequest(url) {
     return new Promise(function (resolve, reject) {
-      request(url, function (error, res, body) {
-        if (!error && res.statusCode == 200) {
-          resolve(body);
-        } else {
-          reject(error);
-        }
-      });
+        request(url, function (error, res, body) {
+            if (!error && res.statusCode == 200) {
+                resolve(body);
+            } else {
+                reject(error);
+            }
+        });
     });
-  }
+}
 
 module.exports = (app) => {
     router
@@ -36,14 +36,14 @@ module.exports = (app) => {
 
             let coinone = await doRequest('https://api.coinone.co.kr/ticker/');
             let bitflyer = await doRequest('https://lightning.bitflyer.jp/v1/getprices');
-            let viabtc = await doRequest('https://api.viabtc.com/v1/market/ticker?market=BTCCNY');
+            // let viabtc = await doRequest('https://api.viabtc.com/v1/market/ticker?market=BTCCNY');
 
             // console.log(JSON.parse(bitflyer)[0].rate)
             bfRes = JSON.stringify(JSON.parse(bitflyer)[0].rate)
             await ctx.render('bitcoin', {
                 co: JSON.parse(coinone).last,
                 bf: bfRes,
-                vb: JSON.parse(viabtc).data.ticker.last,
+                // vb: JSON.parse(viabtc).data.ticker.last,
                 rate: ctx.query.rate || 178
             });
             
