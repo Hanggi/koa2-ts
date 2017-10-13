@@ -13,8 +13,8 @@ let transporter = nodemailer.createTransport({
 
 let mailOptions = {
     from: 'hanggi', // sender address
-    // to: 'hanggicrown@gmail.com', // list of receivers
-    to: 'mariaclark1123@outlook.com',
+    to: 'hanggicrown@gmail.com', // list of receivers
+    // to: 'mariaclark1123@outlook.com',
     // to: 'hanggi@seoul.ac.kr',
     subject: `test`, // Subject line
     text: '!!Hello world ✔', // plaintext body
