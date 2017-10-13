@@ -52,8 +52,8 @@ let doSendEmail = (price, title, data) => {
 let rounding = (p) => parseInt(p / 50000);
 
 let scheduleCronstyle = () => {
-    // schedule.scheduleJob('5 * * * * *', function(){
-    setInterval(()=>{
+    schedule.scheduleJob('5 * * * * *', function(){
+    // setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
         // let bithumb = await doRequest('https://api.bithumb.com/public/ticker/BTC');
@@ -72,8 +72,8 @@ let scheduleCronstyle = () => {
             last_price = rounding(price);    
         });
         
-    }, 5000);
-    // }); 
+    // }, 5000);
+    }); 
 }
 
 scheduleCronstyle();
