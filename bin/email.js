@@ -20,6 +20,7 @@ var last_price = -1;
 
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
+    host: 'smtp.gmail.com',
     auth: {
         user: 'hanggicrown@gmail.com',
         pass: '110119120'
