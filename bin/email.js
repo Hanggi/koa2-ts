@@ -31,8 +31,8 @@ let transporter = nodemailer.createTransport({
 let doSendEmail = (price, title, data) => {
     let mailOptions = {
         from: 'hanggi', // sender address
-        to: 'hanggicrown@gmail.com', // list of receivers
-    //    to: 'mariaclark1123@outlook.com',
+        // to: 'hanggicrown@gmail.com', // list of receivers
+        to: 'mariaclark1123@outlook.com',
         // to: 'hanggi@seoul.ac.kr',
         subject: `${title} - ${price}`, // Subject line
         text: '!!Hello world ✔', // plaintext body
@@ -49,8 +49,12 @@ let doSendEmail = (price, title, data) => {
     });
 }
 
+let rounding = (p) => parseInt(p / 50000);
+
 let scheduleCronstyle = () => {
-    schedule.scheduleJob('5 * * * * *', function(){
+    // schedule.scheduleJob('5 * * * * *', function(){
+    setInterval(()=>{
+
         console.log('scheduleCronstyle:' + new Date());
         // let bithumb = await doRequest('https://api.bithumb.com/public/ticker/BTC');
         request('https://api.bithumb.com/public/ticker/BTC', (error, response, body) => {
@@ -59,16 +63,17 @@ let scheduleCronstyle = () => {
             console.log(price);
     
             if (last_price != -1) {
-                if (parseInt(price / 10000) < last_price) {
+                if (rounding(price) < last_price) {
                     doSendEmail(price, "价格跌破整数点！", data);
-                } else if (parseInt(price / 10000) > last_price) {
+                } else if (rounding(price) > last_price) {
                     doSendEmail(price, "[涨啦]", data);
                 }
             }
-            last_price = parseInt(price / 10000);    
+            last_price = rounding(price);    
         });
         
-    }); 
+    }, 5000);
+    // }); 
 }
 
 scheduleCronstyle();
