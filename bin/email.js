@@ -26,7 +26,7 @@ let doSendEmail = (price, title, data) => {
         // to: 'hanggi@seoul.ac.kr',
         subject: `${title} [${price}]`, // Subject line
         text: '!!Hello world ✔', // plaintext body
-        html: `<b>Hello world ✔</b>` // html body
+        html: `目前价格为:<b>₩${price}</b> 从 ₩${data.last} ${data.updown > 0 ? "上涨": "下跌"}` // html body
     
     };
     
@@ -54,11 +54,11 @@ let scheduleCronstyle = () => {
             if (last_price != -1) {
                 console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
                 if (price < (last_price - 50000)) {
-                    doSendEmail(price, "{跌啦！}", data);
+                    doSendEmail(price, "{跌啦！}", {data: data, last: last, updown: -1});
                     console.log("跌破发送邮件！");
                     last_price = price;
                 } else if (price > (last_price + 50000)) {
-                    doSendEmail(price, "[涨啦]", data);
+                    doSendEmail(price, "[涨啦]", {data: data, last: last, updown: 1});
                     console.log("涨幅发送邮件！");
                     last_price = price;
                 }
