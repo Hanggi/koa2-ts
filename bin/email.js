@@ -7,31 +7,15 @@ const app = new Koa();
 
 var last_price = -1;
 
-// function doRequest(url) {
-//     return new Promise(function (resolve, reject) {
-//         request(url, function (error, res, body) {
-//             if (!error && res.statusCode == 200) {
-//                 resolve(body);
-//             } else {
-//                 reject(error);
-//             }
-//         });
-//     });
-// }
-
-let transporter = nodemailer.createTransport({
-    service: 'Gmail',
+var transporter = nodemailer.createTransport(smtpTransport({
+    host: "smtp.qq.com", // 主机
+    secure: true, // 使用 SSL
+    port: 465, // SMTP 端口
     auth: {
-        type: 'OAuth2',
-        user: 'hanggicrown@gmail.com',
-            // pass: '110119120',
-        clientId: '739473511141-erbgfgsuf76g4fls94f8nclhr3kt3pi1.apps.googleusercontent.com',
-        clientSecret: 'qGVLvLxBeeJZAufN2SHc4bfF',
-        refreshToken: '1/Ro36Gsh-dt4Jznw0-diYONxEu-1THzwzyX3xYQhybTs',
-        accessToken: 'ya29.GlvkBGYQeTmkZU_1OawFHMYAd3CHj89ycBOQ1sOBDXRpuVDhYMqP7mz7lW9zKD-Cf6XPhilQruuyzmLnr9cm7FEGOY35DeJIVAVnLOFTS0vpOfhV40eefdHtLeZc'
+      user: "271335064@qq.com", // 账号
+      pass: "xgebevpovhhccbbj" // 密码
     }
-
-});
+}));
 
 let doSendEmail = (price, title, data) => {
     let mailOptions = {
