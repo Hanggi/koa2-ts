@@ -54,11 +54,11 @@ let scheduleCronstyle = () => {
             if (last_price != -1) {
                 console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
                 if (price < (last_price - 50000)) {
-                    doSendEmail(price, "{跌啦！}", {data: data, last: last, updown: -1});
+                    doSendEmail(price, "{跌啦！}", {data: data, last: last_price, updown: -1});
                     console.log("跌破发送邮件！");
                     last_price = price;
                 } else if (price > (last_price + 50000)) {
-                    doSendEmail(price, "[涨啦]", {data: data, last: last, updown: 1});
+                    doSendEmail(price, "[涨啦]", {data: data, last: last_price, updown: 1});
                     console.log("涨幅发送邮件！");
                     last_price = price;
                 }
