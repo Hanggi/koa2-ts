@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const schedule = require('node-schedule');
-const xoauth2 = require('xoauth2');
+var smtpTransport = require('nodemailer-smtp-transport');
+// const xoauth2 = require('xoauth2');
 const request = require('request');
 const Koa = require('koa');
 const app = new Koa();
