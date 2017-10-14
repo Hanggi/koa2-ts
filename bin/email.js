@@ -26,7 +26,10 @@ let doSendEmail = (price, title, data) => {
         // to: 'hanggi@seoul.ac.kr',
         subject: `${title} [${price}]`, // Subject line
         text: '!!Hello world ✔', // plaintext body
-        html: `目前价格为:<b>₩${price}</b> 从 ₩${data.last} ${data.updown > 0 ? "上涨": "下跌"}` // html body
+        html: `目前价格为:<b>₩${price}</b> 从 ₩${data.last} ${data.updown > 0 ? "上涨": "下跌"}
+            <br>
+            最高价：₩${data.data.max_price}，最低价：₩${data.data.min_price}
+        ` // html body
     
     };
     
