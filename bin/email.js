@@ -53,13 +53,14 @@ let scheduleCronstyle = () => {
             console.log(price);
     
             if (last_price != -1) {
-                if (rounding(price) < last_price) {
+                if (price < last_price - 50000) {
                     doSendEmail(price, "价格跌破整数点！", data);
-                } else if (rounding(price) > last_price) {
+                    last_price = price;
+                } else if (price > last_price + 50000) {
                     doSendEmail(price, "[涨啦]", data);
+                    last_price = price;
                 }
-            }
-            last_price = rounding(price);    
+            }   
         });
         
     // }, 5000);
