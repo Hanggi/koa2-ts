@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const schedule = require('node-schedule');
+const xoauth2 = require('xoauth2');
 const request = require('request');
 const Koa = require('koa');
 const app = new Koa();
@@ -20,15 +21,14 @@ var last_price = -1;
 
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
-    host: 'smtp.gmail.com',
-    secureConnection: false,
-    port: 587,
-    requiresAuth: true,
-    domains: ["gmail.com", "googlemail.com"],
     auth: {
+        type: 'OAuth2',
         user: 'hanggicrown@gmail.com',
-        pass: '110119120'
-
+            // pass: '110119120',
+        clientId: '739473511141-erbgfgsuf76g4fls94f8nclhr3kt3pi1.apps.googleusercontent.com',
+        clientSecret: 'qGVLvLxBeeJZAufN2SHc4bfF',
+        refreshToken: '1/Ro36Gsh-dt4Jznw0-diYONxEu-1THzwzyX3xYQhybTs',
+        accessToken: 'ya29.GlvkBGYQeTmkZU_1OawFHMYAd3CHj89ycBOQ1sOBDXRpuVDhYMqP7mz7lW9zKD-Cf6XPhilQruuyzmLnr9cm7FEGOY35DeJIVAVnLOFTS0vpOfhV40eefdHtLeZc'
     }
 
 });
