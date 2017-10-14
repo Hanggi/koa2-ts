@@ -42,14 +42,14 @@ let doSendEmail = (price, title, data) => {
 let rounding = (p) => parseInt(p / 50000);
 
 let scheduleCronstyle = () => {
-    // schedule.scheduleJob('5 * * * * *', function(){
-    setInterval(()=>{
+    schedule.scheduleJob('5 * * * * *', function(){
+    // setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
         // let bithumb = await doRequest('https://api.bithumb.com/public/ticker/BTC');
         request('https://api.bithumb.com/public/ticker/BTC', (error, response, body) => {
             let data = JSON.parse(body).data;
-            let price = parseInt(data.closing_price);
+            let price = parseInt    (data.closing_price);
     
             if (last_price != -1) {
                 console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
@@ -67,8 +67,8 @@ let scheduleCronstyle = () => {
             }
         });
         
-    }, 5000);
-    // }); 
+    // }, 5000);
+    }); 
 }
 
 scheduleCronstyle();
