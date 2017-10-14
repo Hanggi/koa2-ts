@@ -20,7 +20,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
 
 let doSendEmail = (price, title, data) => {
     let mailOptions = {
-        from: 'hanggi', // sender address
+        from: '271335064@qq.com', // sender address
         // to: 'hanggicrown@gmail.com', // list of receivers
         to: 'mariaclark1123@outlook.com',
         // to: 'hanggi@seoul.ac.kr',
