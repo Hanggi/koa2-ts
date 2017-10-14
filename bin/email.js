@@ -42,29 +42,33 @@ let doSendEmail = (price, title, data) => {
 let rounding = (p) => parseInt(p / 50000);
 
 let scheduleCronstyle = () => {
-    schedule.scheduleJob('5 * * * * *', function(){
-    // setInterval(()=>{
+    // schedule.scheduleJob('5 * * * * *', function(){
+    setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
         // let bithumb = await doRequest('https://api.bithumb.com/public/ticker/BTC');
         request('https://api.bithumb.com/public/ticker/BTC', (error, response, body) => {
             let data = JSON.parse(body).data;
-            let price = data.closing_price;
-            console.log(price);
+            let price = parseInt(data.closing_price);
     
             if (last_price != -1) {
-                if (price < last_price - 50000) {
+                console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
+                if (price < (last_price - 50000)) {
                     doSendEmail(price, "价格跌破整数点！", data);
+                    console.log("跌破发送邮件！");
                     last_price = price;
-                } else if (price > last_price + 50000) {
+                } else if (price > (last_price + 50000)) {
                     doSendEmail(price, "[涨啦]", data);
+                    console.log("涨幅发送邮件！");
                     last_price = price;
                 }
-            }   
+            } else {
+                last_price = price;
+            }
         });
         
-    // }, 5000);
-    }); 
+    }, 5000);
+    // }); 
 }
 
 scheduleCronstyle();
