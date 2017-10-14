@@ -20,6 +20,7 @@ let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         type: 'OAuth2',
+        port: 465,
         user: 'hanggicrown@gmail.com',
             // pass: '110119120',
         clientId: '739473511141-erbgfgsuf76g4fls94f8nclhr3kt3pi1.apps.googleusercontent.com',
