@@ -7,6 +7,7 @@ const Koa = require('koa');
 const app = new Koa();
 
 var last_price = -1;
+var last_bch_price = -1;
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: "smtp.qq.com", // 主机
@@ -57,16 +58,36 @@ let scheduleCronstyle = () => {
             if (last_price != -1) {
                 console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
                 if (price < (last_price - 50000)) {
-                    doSendEmail(price, "{跌啦！}", {data: data, last: last_price, updown: -1});
+                    doSendEmail(price, "{BTC跌啦！}", {data: data, last: last_price, updown: -1});
                     console.log("跌破发送邮件！");
                     last_price = price;
                 } else if (price > (last_price + 50000)) {
-                    doSendEmail(price, "[涨啦]", {data: data, last: last_price, updown: 1});
+                    doSendEmail(price, "[BTC涨啦]", {data: data, last: last_price, updown: 1});
                     console.log("涨幅发送邮件！");
                     last_price = price;
                 }
             } else {
                 last_price = price;
+            }
+        });
+
+        request('https://api.bithumb.com/public/ticker/BCH', (error, response, body) => {
+            let data = JSON.parse(body).data;
+            let price = parseInt    (data.closing_price);
+    
+            if (last_bch_price != -1) {
+                console.log(`price: ${price}, last: ${last_bch_price}, cha: ${price - last_bch_price}`);
+                if (price < (last_bch_price - 20000)) {
+                    doSendEmail(price, "{BCH:跌啦！}", {data: data, last: last_bch_price, updown: -1});
+                    console.log("跌破发送邮件！");
+                    last_bch_price = price;
+                } else if (price > (last_bch_price + 20000)) {
+                    doSendEmail(price, "[BCH涨啦]", {data: data, last: last_bch_price, updown: 1});
+                    console.log("涨幅发送邮件！");
+                    last_bch_price = price;
+                }
+            } else {
+                last_bch_price = price;
             }
         });
         

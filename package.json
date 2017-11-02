@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Hanggi/koa-build#readme",
   "dependencies": {
-    "chalk": "^2.2.0",
+    "chalk": "^2.3.0",
     "co": "^4.6.0",
     "github-webhook-handler": "^0.6.0",
     "koa": "^2.3.0",
@@ -31,9 +31,9 @@
     "koa-router": "^7.2.1",
     "koa-send": "^4.1.1",
     "koa-static": "^3.0.0",
-    "mongoose": "^4.12.4",
+    "mongoose": "^4.12.5",
     "node-schedule": "^1.2.5",
-    "nodemailer": "^4.2.0",
+    "nodemailer": "^4.3.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "request": "^2.83.0",
     "xoauth2": "^1.2.0"
