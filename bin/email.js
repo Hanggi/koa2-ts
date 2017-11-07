@@ -56,14 +56,14 @@ let scheduleCronstyle = () => {
             let price = parseInt    (data.closing_price);
     
             if (last_price != -1) {
-                console.log(`price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
+                console.log(`BTC price: ${price}, last: ${last_price}, cha: ${price - last_price}`);
                 if (price < (last_price - 50000)) {
                     doSendEmail(price, "{BTC跌啦！}", {data: data, last: last_price, updown: -1});
-                    console.log("跌破发送邮件！");
+                    console.log("BTC 跌破发送邮件！");
                     last_price = price;
                 } else if (price > (last_price + 50000)) {
                     doSendEmail(price, "[BTC涨啦]", {data: data, last: last_price, updown: 1});
-                    console.log("涨幅发送邮件！");
+                    console.log("BTC 涨幅发送邮件！");
                     last_price = price;
                 }
             } else {
@@ -76,14 +76,14 @@ let scheduleCronstyle = () => {
             let price = parseInt    (data.closing_price);
     
             if (last_bch_price != -1) {
-                console.log(`price: ${price}, last: ${last_bch_price}, cha: ${price - last_bch_price}`);
+                console.log(`BCH price: ${price}, last: ${last_bch_price}, cha: ${price - last_bch_price}`);
                 if (price < (last_bch_price - 20000)) {
                     doSendEmail(price, "{BCH:跌啦！}", {data: data, last: last_bch_price, updown: -1});
-                    console.log("跌破发送邮件！");
+                    console.log("BCH 跌破发送邮件！");
                     last_bch_price = price;
                 } else if (price > (last_bch_price + 20000)) {
                     doSendEmail(price, "[BCH涨啦]", {data: data, last: last_bch_price, updown: 1});
-                    console.log("涨幅发送邮件！");
+                    console.log("BCH 涨幅发送邮件！");
                     last_bch_price = price;
                 }
             } else {
