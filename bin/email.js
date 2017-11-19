@@ -72,9 +72,16 @@ let scheduleCronstyle = () => {
                         subject: `交易量突然上升! ${qty}`, // Subject line
                         text: '!!Hello world ✔', // plaintext body
                         html: `交易量提升警报！` // html body
-                    
                     };
                     
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            console.log(error);
+                        }else{
+                            console.log('Message sent: ' + info.response);
+                        }
+                    });
+                    mailOptions.to = "271335064@qq.com"
                     transporter.sendMail(mailOptions, function(error, info){
                         if(error){
                             console.log(error);
