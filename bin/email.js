@@ -46,7 +46,47 @@ let doSendEmail = (price, title, data) => {
 let rounding = (p) => parseInt(p / 50000);
 
 let scheduleCronstyle = () => {
-    // schedule.scheduleJob('5 * * * * *', function(){
+    schedule.scheduleJob('1 * * * * *', function(){
+        // setInterval(()=>{
+            request("https://api.coinone.co.kr/trades?currency=bch", (err, res, body) => {
+                let data = JSON.parse(body).completeOrders;
+                let now = data[data.length - 1].timestamp;
+                let limit = now - 60;
+                let qty = 0;
+                // console.log(now)
+                for (let i = data.length - 1; i > 0; i--) {
+                    // console.log(typeof data)
+                    // console.log(i)
+                    if (Number(data[i].timestamp) < limit) {
+                        break;
+                    }
+                    qty += Number(data[i].qty);
+                }
+                console.log(qty)
+                if (qty > 160) {
+                    let mailOptions = {
+                        from: '271335064@qq.com', // sender address
+                        // to: 'hanggicrown@gmail.com', // list of receivers
+                        to: 'mariaclark1123@outlook.com',
+                        // to: 'hanggi@seoul.ac.kr',
+                        subject: `交易量突然上升! ${qty}`, // Subject line
+                        text: '!!Hello world ✔', // plaintext body
+                        html: `交易量提升警报！` // html body
+                    
+                    };
+                    
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            console.log(error);
+                        }else{
+                            console.log('Message sent: ' + info.response);
+                        }
+                    });
+                }
+
+            });
+        // }, 5000);
+    }); 
     setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
@@ -92,7 +132,6 @@ let scheduleCronstyle = () => {
         });
         
     }, 5000);
-    // }); 
 }
 
 scheduleCronstyle();
