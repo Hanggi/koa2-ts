@@ -23,7 +23,7 @@ let doSendEmail = (price, title, data) => {
     let mailOptions = {
         from: '271335064@qq.com', // sender address
         // to: 'hanggicrown@gmail.com', // list of receivers
-        to: 'mariaclark1123@outlook.com',
+        to: '2745490330@qq.com',
         // to: 'hanggi@seoul.ac.kr',
         subject: `${title} [${price}]`, // Subject line
         text: '!!Hello world ✔', // plaintext body
@@ -67,7 +67,7 @@ let scheduleCronstyle = () => {
                     let mailOptions = {
                         from: '271335064@qq.com', // sender address
                         // to: 'hanggicrown@gmail.com', // list of receivers
-                        to: 'mariaclark1123@outlook.com',
+                        to: '2745490330@qq.com',
                         // to: 'hanggi@seoul.ac.kr',
                         subject: `交易量突然上升! ${qty}`, // Subject line
                         text: '!!Hello world ✔', // plaintext body
