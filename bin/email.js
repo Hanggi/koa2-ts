@@ -49,6 +49,9 @@ let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         setInterval(()=>{
             request("https://api.coinone.co.kr/trades?currency=bch", (err, res, body) => {
+                if (err) {
+                    console.log(err)
+                }
                 let data = JSON.parse(body).completeOrders;
                 let now = data[data.length - 1].timestamp;
                 let limit = now - 60;
@@ -106,6 +109,9 @@ let scheduleCronstyle = () => {
         console.log('scheduleCronstyle:' + new Date());
         // let bithumb = await doRequest('https://api.bithumb.com/public/ticker/BTC');
         request("https://api.coinone.co.kr/ticker?currency=btc", (error, response, body) => {
+            if (error) {
+                console.log(error)
+            }
             let data = JSON.parse(body);
             let price = parseInt(data.last);
     
@@ -126,6 +132,9 @@ let scheduleCronstyle = () => {
         });
 
         request('https://api.coinone.co.kr/ticker?currency=bch', (error, response, body) => {
+            if (error) {
+                console.log(error)
+            }
             let data = JSON.parse(body);
             let price = parseInt(data.last);
     
