@@ -75,7 +75,7 @@ let scheduleCronstyle = () => {
                         html: `交易量提升警报！` // html body
                     };
 
-                    if ((new Date() - lastTime) > 10000) {
+                    if ((new Date() - lastTime) > 40000) {
                         lastTime = new Date()
                         
                         transporter.sendMail(mailOptions, function(error, info){
@@ -99,7 +99,7 @@ let scheduleCronstyle = () => {
                 }
 
             });
-        }, 5000);
+        }, 3000);
     // }); 
     setInterval(()=>{
 
@@ -145,7 +145,7 @@ let scheduleCronstyle = () => {
             }
         });
         
-    }, 5000);
+    }, 3000);
 }
 
 scheduleCronstyle();
