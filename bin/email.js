@@ -42,12 +42,12 @@ let doSendEmail = (price, title, data) => {
         }
     });
 }
-
+let lastTime = 0
 let rounding = (p) => parseInt(p / 50000);
 
 let scheduleCronstyle = () => {
-    schedule.scheduleJob('1 * * * * *', function(){
-        // setInterval(()=>{
+    // schedule.scheduleJob('1 * * * * *', function(){
+        setInterval(()=>{
             request("https://api.coinone.co.kr/trades?currency=bch", (err, res, body) => {
                 let data = JSON.parse(body).completeOrders;
                 let now = data[data.length - 1].timestamp;
@@ -62,7 +62,8 @@ let scheduleCronstyle = () => {
                     }
                     qty += Number(data[i].qty);
                 }
-                console.log(qty)
+                qty = Math.round(qty)
+                console.log("前一分钟交易量：" + qty)
                 if (qty > 160) {
                     let mailOptions = {
                         from: '271335064@qq.com', // sender address
@@ -73,27 +74,33 @@ let scheduleCronstyle = () => {
                         text: '!!Hello world ✔', // plaintext body
                         html: `交易量提升警报！` // html body
                     };
+
+                    if ((new Date() - lastTime) > 10000) {
+                        lastTime = new Date()
+                        
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if(error){
+                                console.log(error);
+                            }else{
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                        mailOptions.to = "271335064@qq.com"
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if(error){
+                                console.log(error);
+                            }else{
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                    }
+
                     
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if(error){
-                            console.log(error);
-                        }else{
-                            console.log('Message sent: ' + info.response);
-                        }
-                    });
-                    mailOptions.to = "271335064@qq.com"
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if(error){
-                            console.log(error);
-                        }else{
-                            console.log('Message sent: ' + info.response);
-                        }
-                    });
                 }
 
             });
-        // }, 5000);
-    }); 
+        }, 5000);
+    // }); 
     setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
