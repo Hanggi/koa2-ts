@@ -45,6 +45,8 @@ let doSendEmail = (price, title, data) => {
 let lastTime = 0
 let rounding = (p) => parseInt(p / 50000);
 
+let heat = 0;
+
 let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         setInterval(()=>{
@@ -67,6 +69,7 @@ let scheduleCronstyle = () => {
                 }
                 qty = Math.round(qty)
                 console.log("前一分钟交易量：" + qty)
+                // console.log(heat)
                 if (qty > 160) {
                     let mailOptions = {
                         from: '271335064@qq.com', // sender address
@@ -78,7 +81,11 @@ let scheduleCronstyle = () => {
                         html: `交易量提升警报！` // html body
                     };
 
-                    if ((new Date() - lastTime) > 40000) {
+                    let interval = new Date() - lastTime;
+                    if (heat < 20)
+                        heat++;
+
+                    if (interval > 10000 * heat) {
                         lastTime = new Date()
                         
                         transporter.sendMail(mailOptions, function(error, info){
@@ -97,8 +104,9 @@ let scheduleCronstyle = () => {
                             }
                         });
                     }
-
-                    
+                }else {
+                    if (heat > 0)
+                        heat--;
                 }
 
             });
