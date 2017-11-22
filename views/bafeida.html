@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Koa build</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta baidu-bsi-verify-token="6ea8da8ccd5c9054968e255971377ffc">
+
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;}
+        li {list-style-type: none;font-size:13px;}
+        li.buy {color:tomato;}
+        li.sell {color:deepskyblue;}
+    </style>
+</head>
+
+<body>
+    <div></div>btc + bch :<%- parseInt(btc.last) + parseInt(bch.last) %> = <%- parseInt(btc.last) %> + <%- parseInt(bch.last) %></div>
+
+    <div>
+        <!-- <%- dbalance %> -->
+    </div>
+    <div>
+        <%- ob %>
+    </div>
+
+    <ul>
+        <% for(var i = 0; i < list.length; i++) {%>
+            <% if (list[i].type == "bid") { %>
+                <li class="buy">
+            <% } else { %>
+                <li class="sell">
+            <% } %>
+                    <%- date(parseInt(list[i].timestamp) * 1000) %> <%= list[i].price %> - <%= list[i].type %> - <%= list[i].qty %>  - <%= list[i].fee %>
+                </li>
+        <% } %>
+    </ul>
+    
+
+
+</body>
+<script>
+    // setInterval(function () {
+    //     location.reload()
+    // }, 5000)
+</script>
+
+</html>
