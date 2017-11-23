@@ -68,7 +68,7 @@ let scheduleCronstyle = () => {
                     qty += Number(data[i].qty);
                 }
                 qty = Math.round(qty)
-                console.log("前一分钟交易量：" + qty + " 价格：" + data[data.length - 1])
+                console.log("前一分钟交易量：" + qty + " 价格：" + data[data.length - 1].price)
                 // console.log(heat)
                 if (qty > 180) {
                     let mailOptions = {
