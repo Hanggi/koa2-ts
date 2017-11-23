@@ -70,7 +70,7 @@ let scheduleCronstyle = () => {
                 qty = Math.round(qty)
                 console.log("前一分钟交易量：" + qty)
                 // console.log(heat)
-                if (qty > 160) {
+                if (qty > 180) {
                     let mailOptions = {
                         from: '271335064@qq.com', // sender address
                         // to: 'hanggicrown@gmail.com', // list of receivers
@@ -85,7 +85,7 @@ let scheduleCronstyle = () => {
                     if (heat < 20)
                         heat++;
 
-                    if (interval > 10000 * heat) {
+                    if (interval > 30000 * heat) {
                         lastTime = new Date()
                         
                         transporter.sendMail(mailOptions, function(error, info){
