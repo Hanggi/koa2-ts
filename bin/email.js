@@ -76,7 +76,7 @@ let scheduleCronstyle = () => {
                         // to: 'hanggicrown@gmail.com', // list of receivers
                         to: '2745490330@qq.com',
                         // to: 'hanggi@seoul.ac.kr',
-                        subject: `交易量突然上升! ${qty}`, // Subject line
+                        subject: `交易量突然上升! ${qty} 价格：${data[data.length - 1].price}`, // Subject line
                         text: '!!Hello world ✔', // plaintext body
                         html: `交易量提升警报！` // html body
                     };
