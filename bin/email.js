@@ -112,6 +112,7 @@ let scheduleCronstyle = () => {
             });
         }, 3000);
     // }); 
+    /*
     setInterval(()=>{
 
         console.log('scheduleCronstyle:' + new Date());
@@ -162,7 +163,7 @@ let scheduleCronstyle = () => {
             }
         });
         
-    }, 3000);
+    }, 3000);/**/
 }
 
 scheduleCronstyle();
