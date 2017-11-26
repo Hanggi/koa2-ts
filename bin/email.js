@@ -88,13 +88,13 @@ let scheduleCronstyle = () => {
                     if (interval > 30000 * heat) {
                         lastTime = new Date()
                         
-                        // transporter.sendMail(mailOptions, function(error, info){
-                        //     if(error){
-                        //         console.log(error);
-                        //     }else{
-                        //         console.log('Message sent: ' + info.response);
-                        //     }
-                        // });
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if(error){
+                                console.log(error);
+                            }else{
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
                         mailOptions.to = "271335064@qq.com"
                         transporter.sendMail(mailOptions, function(error, info){
                             if(error){
