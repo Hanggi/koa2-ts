@@ -45,9 +45,9 @@ let doSendEmail = (price, title, data) => {
 let lastTime = 0
 let rounding = (p) => parseInt(p / 50000);
 
-let heat = 0;
+let heat = [0, 0, 0, 0, 0, 0];
 
-function getPrice(coin) {
+function getPrice(coin, id_index) {
     request("https://api.coinone.co.kr/trades?currency=" + coin, (err, res, body) => {
         if (err) {
             console.log(err)
@@ -66,7 +66,7 @@ function getPrice(coin) {
             qty += Number(data[i].qty);
         }
         qty = Math.round(qty)
-        console.log(coin + "前一分钟交易量：" + qty + " 价格：" + data[data.length - 1].price + " 交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元")
+        console.log("[" + coin.toUpperCase() + "]前一分钟交易量：" + qty + (data[data.length - 1].price > data[data.length - 100].price ? "上涨到": "下跌到") + " 价格：" + data[data.length - 1].price + " 交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元")
         // console.log(heat)
         if (qty * data[data.length - 1].price > 220000000) {
             let mailOptions = {
@@ -74,16 +74,16 @@ function getPrice(coin) {
                 // to: 'hanggicrown@gmail.com', // list of receivers
                 to: '2745490330@qq.com',
                 // to: 'hanggi@seoul.ac.kr',
-                subject: `[${coin}]交量突升!${qty} 价格：${data[data.length - 1].price} 交易额：${qty*data[data.length - 1].price/100000000} 亿韩元`, // Subject line
+                subject: `[${coin.toUpperCase()}]交量突升!${qty},${data[data.length - 1].price > data[data.length - 100].price ? "上涨到": "下跌到"}价格：${data[data.length - 1].price},交易额：${qty*data[data.length - 1].price/100000000} 亿韩元, `, // Subject line
                 text: '!!Hello world ✔', // plaintext body
                 html: `交易量提升警报！` // html body
             };
 
             let interval = new Date() - lastTime;
-            if (heat < 20)
-                heat++;
+            if (heat[id_index] < 20)
+                heat[id_index]++;
 
-            if (interval > 30000 * heat) {
+            if (interval > 30000 * heat[id_index]) {
                 lastTime = new Date()
                 
                 transporter.sendMail(mailOptions, function(error, info){
@@ -103,8 +103,8 @@ function getPrice(coin) {
                 });
             }
         }else {
-            if (heat > 0)
-                heat--;
+            if (heat[id_index] > 0)
+                heat[id_index]--;
         }
 
     });
@@ -112,14 +112,17 @@ function getPrice(coin) {
 
 let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
+        let time_interval = 2000
         setInterval(()=>{
-            getPrice("bch");
-            getPrice("iota");
-            getPrice("xrp");
-            getPrice("ltc");
-            getPrice("eth");
-            getPrice("etc");
-        }, 2000);
+            getPrice("bch", 0);
+            getPrice("iota", 1);
+            getPrice("xrp", 2);
+            setTimeout(() => {
+                getPrice("ltc", 3);
+                getPrice("eth", 4);
+                getPrice("etc", 5);
+            }, time_interval/2)
+        }, time_interval);
     // }); 
     /*
     setInterval(()=>{
