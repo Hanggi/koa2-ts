@@ -81,7 +81,7 @@ function getPrice(coin, id_index) {
 
             let interval = new Date() - lastTime;
 
-            if (interval > 60000 * heat[id_index]) {
+            if (interval > 60000 * heat[id_index] + 10000) {
                 lastTime = new Date()
 
                 if (heat[id_index] < 10) {
