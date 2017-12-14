@@ -46,7 +46,7 @@ let doSendEmail = (price, title, data) => {
 let lastTime = 0
 let rounding = (p) => parseInt(p / 50000);
 
-let heat = [0, 0, 0, 0, 0, 0];
+let heat = [0, 0, 0, 0, 0, 0, 0];
 
 function getPrice(coin, id_index) {
 
@@ -132,7 +132,7 @@ let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         let time_interval = 2000
         setInterval(()=>{
-            getPrice("btc", 0);
+            getPrice("btc", 6);
             getPrice("bch", 0);
             getPrice("iota", 1);
             getPrice("xrp", 2);
