@@ -64,7 +64,7 @@ function getPrice(coin, id_index) {
         if (err) {
             console.log(err)
         }
-        console.log(body)
+        // console.log(body)
         let data = JSON.parse(body).completeOrders;
         let now = data[data.length - 1].timestamp;
         let limit = now - 60;
