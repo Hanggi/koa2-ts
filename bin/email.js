@@ -80,11 +80,13 @@ function getPrice(coin, id_index) {
             };
 
             let interval = new Date() - lastTime;
-            if (heat[id_index] < 10)
-                heat[id_index]++;
 
             if (interval > 60000 * heat[id_index]) {
                 lastTime = new Date()
+
+                if (heat[id_index] < 10) {
+                    heat[id_index]++;
+                }
                 
                 transporter.sendMail(mailOptions, function(error, info){
                     if(error){
