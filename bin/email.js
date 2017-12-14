@@ -3,6 +3,7 @@ const schedule = require('node-schedule');
 var smtpTransport = require('nodemailer-smtp-transport');
 // const xoauth2 = require('xoauth2');
 const request = require('request');
+const chalk = require("chalk");
 const Koa = require('koa');
 const app = new Koa();
 
@@ -48,6 +49,17 @@ let rounding = (p) => parseInt(p / 50000);
 let heat = [0, 0, 0, 0, 0, 0];
 
 function getPrice(coin, id_index) {
+
+    function coinColor(str) {
+        if (str == "BCH") {
+            return chalk.yellow.bgBlue(str)
+        }else if (str == "IOTA") {
+            return chalk.white.bgMagenta(str)
+        } else {
+            return str
+        }
+    }
+
     request("https://api.coinone.co.kr/trades?currency=" + coin, (err, res, body) => {
         if (err) {
             console.log(err)
@@ -66,7 +78,8 @@ function getPrice(coin, id_index) {
             qty += Number(data[i].qty);
         }
         qty = Math.round(qty)
-        console.log("[" + coin.toUpperCase() + "]前一分钟交易量：" + qty + "，价格" + (data[data.length - 1].price > data[data.length - 500].price ? "(上涨)": "(下跌)") + "到：" + data[data.length - 1].price + "，交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元, 热度：" + heat[id_index])
+        
+        console.log("[" + coinColor(coin.toUpperCase()) + "]前一分钟交易量：" + chalk.cyan(qty) + "，价格" + (data[data.length - 1].price > data[data.length - 500].price ? chalk.green("(上涨)"): chalk.red("(下跌)")) + "到：" + chalk.yellow(data[data.length - 1].price) + "，交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元, 热度：" + heat[id_index])
         // console.log(heat)
         if (qty * data[data.length - 1].price > 220000000) {
             let mailOptions = {
