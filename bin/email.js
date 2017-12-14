@@ -47,70 +47,79 @@ let rounding = (p) => parseInt(p / 50000);
 
 let heat = 0;
 
+function getPrice(coin) {
+    request("https://api.coinone.co.kr/trades?currency=" + coin, (err, res, body) => {
+        if (err) {
+            console.log(err)
+        }
+        let data = JSON.parse(body).completeOrders;
+        let now = data[data.length - 1].timestamp;
+        let limit = now - 60;
+        let qty = 0;
+        // console.log(now)
+        for (let i = data.length - 1; i > 0; i--) {
+            // console.log(typeof data)
+            // console.log(i)
+            if (Number(data[i].timestamp) < limit) {
+                break;
+            }
+            qty += Number(data[i].qty);
+        }
+        qty = Math.round(qty)
+        console.log(coin + "前一分钟交易量：" + qty + " 价格：" + data[data.length - 1].price + " 交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元")
+        // console.log(heat)
+        if (qty * data[data.length - 1].price > 220000000) {
+            let mailOptions = {
+                from: '271335064@qq.com', // sender address
+                // to: 'hanggicrown@gmail.com', // list of receivers
+                to: '2745490330@qq.com',
+                // to: 'hanggi@seoul.ac.kr',
+                subject: `[${coin}]交量突升!${qty} 价格：${data[data.length - 1].price} 交易额：${qty*data[data.length - 1].price/100000000} 亿韩元`, // Subject line
+                text: '!!Hello world ✔', // plaintext body
+                html: `交易量提升警报！` // html body
+            };
+
+            let interval = new Date() - lastTime;
+            if (heat < 20)
+                heat++;
+
+            if (interval > 30000 * heat) {
+                lastTime = new Date()
+                
+                transporter.sendMail(mailOptions, function(error, info){
+                    if(error){
+                        console.log(error);
+                    }else{
+                        console.log('Message sent: ' + info.response);
+                    }
+                });
+                mailOptions.to = "271335064@qq.com"
+                transporter.sendMail(mailOptions, function(error, info){
+                    if(error){
+                        console.log(error);
+                    }else{
+                        console.log('Message sent: ' + info.response);
+                    }
+                });
+            }
+        }else {
+            if (heat > 0)
+                heat--;
+        }
+
+    });
+}
+
 let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         setInterval(()=>{
-            request("https://api.coinone.co.kr/trades?currency=bch", (err, res, body) => {
-                if (err) {
-                    console.log(err)
-                }
-                let data = JSON.parse(body).completeOrders;
-                let now = data[data.length - 1].timestamp;
-                let limit = now - 60;
-                let qty = 0;
-                // console.log(now)
-                for (let i = data.length - 1; i > 0; i--) {
-                    // console.log(typeof data)
-                    // console.log(i)
-                    if (Number(data[i].timestamp) < limit) {
-                        break;
-                    }
-                    qty += Number(data[i].qty);
-                }
-                qty = Math.round(qty)
-                console.log("前一分钟交易量：" + qty + " 价格：" + data[data.length - 1].price)
-                // console.log(heat)
-                if (qty > 100) {
-                    let mailOptions = {
-                        from: '271335064@qq.com', // sender address
-                        // to: 'hanggicrown@gmail.com', // list of receivers
-                        to: '2745490330@qq.com',
-                        // to: 'hanggi@seoul.ac.kr',
-                        subject: `交易量突然上升! ${qty} 价格：${data[data.length - 1].price}`, // Subject line
-                        text: '!!Hello world ✔', // plaintext body
-                        html: `交易量提升警报！` // html body
-                    };
-
-                    let interval = new Date() - lastTime;
-                    if (heat < 20)
-                        heat++;
-
-                    if (interval > 30000 * heat) {
-                        lastTime = new Date()
-                        
-                        transporter.sendMail(mailOptions, function(error, info){
-                            if(error){
-                                console.log(error);
-                            }else{
-                                console.log('Message sent: ' + info.response);
-                            }
-                        });
-                        mailOptions.to = "271335064@qq.com"
-                        transporter.sendMail(mailOptions, function(error, info){
-                            if(error){
-                                console.log(error);
-                            }else{
-                                console.log('Message sent: ' + info.response);
-                            }
-                        });
-                    }
-                }else {
-                    if (heat > 0)
-                        heat--;
-                }
-
-            });
-        }, 3000);
+            getPrice("bch");
+            getPrice("iota");
+            getPrice("xrp");
+            getPrice("ltc");
+            getPrice("eth");
+            getPrice("etc");
+        }, 2000);
     // }); 
     /*
     setInterval(()=>{
