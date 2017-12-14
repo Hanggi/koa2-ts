@@ -66,7 +66,7 @@ function getPrice(coin, id_index) {
             qty += Number(data[i].qty);
         }
         qty = Math.round(qty)
-        console.log("[" + coin.toUpperCase() + "]前一分钟交易量：" + qty + (data[data.length - 1].price > data[data.length - 100].price ? "上涨到": "下跌到") + " 价格：" + data[data.length - 1].price + " 交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元")
+        console.log("[" + coin.toUpperCase() + "]前一分钟交易量：" + qty + (data[data.length - 1].price > data[data.length - 500].price ? "上涨到": "下跌到") + " 价格：" + data[data.length - 1].price + " 交易额达到：" + qty*data[data.length - 1].price/100000000 + "亿韩元")
         // console.log(heat)
         if (qty * data[data.length - 1].price > 220000000) {
             let mailOptions = {
@@ -74,7 +74,7 @@ function getPrice(coin, id_index) {
                 // to: 'hanggicrown@gmail.com', // list of receivers
                 to: '2745490330@qq.com',
                 // to: 'hanggi@seoul.ac.kr',
-                subject: `[${coin.toUpperCase()}]交量突升!${qty},${data[data.length - 1].price > data[data.length - 100].price ? "上涨到": "下跌到"}价格：${data[data.length - 1].price},交易额：${qty*data[data.length - 1].price/100000000} 亿韩元, `, // Subject line
+                subject: `[${coin.toUpperCase()}]交量突升!${qty},${data[data.length - 1].price > data[data.length - 500].price ? "上涨到": "下跌到"}价格：${data[data.length - 1].price},交易额：${qty*data[data.length - 1].price/100000000} 亿韩元, `, // Subject line
                 text: '!!Hello world ✔', // plaintext body
                 html: `交易量提升警报！` // html body
             };
