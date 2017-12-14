@@ -105,8 +105,11 @@ function getPrice(coin, id_index) {
                 });
             }
         }else {
-            if (heat[id_index] > 0)
-                heat[id_index]--;
+            let interval = new Date() - lastTime;
+            if (interval > 60000) {
+                if (heat[id_index] > 0)
+                    heat[id_index]--;
+            }
         }
 
     });
