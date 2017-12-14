@@ -64,6 +64,7 @@ function getPrice(coin, id_index) {
         if (err) {
             console.log(err)
         }
+        console.log(body)
         let data = JSON.parse(body).completeOrders;
         let now = data[data.length - 1].timestamp;
         let limit = now - 60;
@@ -132,7 +133,6 @@ let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         let time_interval = 2000
         setInterval(()=>{
-            getPrice("btc", 6);
             getPrice("bch", 0);
             getPrice("iota", 1);
             getPrice("xrp", 2);
@@ -140,6 +140,7 @@ let scheduleCronstyle = () => {
                 getPrice("ltc", 3);
                 getPrice("eth", 4);
                 getPrice("etc", 5);
+                getPrice("btc", 6);
             }, time_interval/2)
         }, time_interval);
     // }); 
