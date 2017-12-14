@@ -132,6 +132,7 @@ let scheduleCronstyle = () => {
     // schedule.scheduleJob('1 * * * * *', function(){
         let time_interval = 2000
         setInterval(()=>{
+            getPrice("btc", 0);
             getPrice("bch", 0);
             getPrice("iota", 1);
             getPrice("xrp", 2);
