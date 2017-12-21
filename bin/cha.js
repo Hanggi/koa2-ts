@@ -20,6 +20,7 @@ let coinhold;
 
 function getPrice(coin, id_index) {
 
+	// 发送请求
 	request("https://api.coinone.co.kr/trades?currency=" + coin, (err, res, body) => {
 
 		if (err) {
@@ -48,7 +49,7 @@ function getPrice(coin, id_index) {
 		// }
 		// qty = Math.round(qty)
 		if (!coinArr[id_index]) {
-
+			// 初始化数组
 			coinPriceArr[id_index] = {
 				price: data[data.length - 1].price,
 				name: coin
@@ -66,6 +67,7 @@ function getPrice(coin, id_index) {
 
 		}
 
+		// 每次请求更新价格数据
 		coinPriceArr[id_index].price = data[data.length - 1].price
 
 		coinPriceArr[id_index].max = Math.max(data[data.length - 1].price, coinPriceArr[id_index].max)
@@ -91,7 +93,7 @@ let scheduleCronstyle = () => {
 	let time_interval = 2000
 
 	setInterval(() => {
-
+			// 循环
 			getPrice("btc", 0);
 
 			getPrice("bch", 1);
@@ -115,6 +117,7 @@ let scheduleCronstyle = () => {
 
 			// console.log(coinPriceArr)
 
+			// 如果 初始化完毕，开始处理
 			if (coinPriceArr.length >= 8) {
 
 				let tmpLast;
@@ -131,6 +134,7 @@ let scheduleCronstyle = () => {
 
 				console.log(pulsArr)
 
+				// 循环输出数据
 				for (let i = 0; i < coinPriceArr.length; i++) {
 
 					if (Arr.length <= i) {
@@ -139,6 +143,7 @@ let scheduleCronstyle = () => {
 
 					}
 
+					// 第一行标题
 					let title = "       | ";
 
 					if (i == 0) {
@@ -162,6 +167,7 @@ let scheduleCronstyle = () => {
 
 					}
 
+					// 数据部分
 					for (let j = 0; j < coinPriceArr.length; j++) {
 
 						if (Arr[i].length <= j) {
