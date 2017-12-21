@@ -1,10 +1,12 @@
 
-            var crypto = require('crypto');
+var crypto = require('crypto');
             // var request = require('request');
 const router = require('koa-router')();
 const send = require('koa-send');
 
 const request = require('request');
+
+let charts = require("./charts");
 
 function getRequest(url) {
     return new Promise(function (resolve, reject) {
@@ -124,6 +126,7 @@ module.exports = (app) => {
                 balance: balance
             })
         })
+        .get('/charts', charts)
         .get('/bafeida', async (ctx, next) => {
             let options = packAPI('https://api.coinone.co.kr/v2/order/complete_orders/')
             let options2 = packAPI('https://api.coinone.co.kr/v2/order/limit_orders/')
