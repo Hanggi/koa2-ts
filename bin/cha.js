@@ -78,11 +78,13 @@ function getPrice(coin, id_index) {
 
         let data;
         try {
-            data = JSON.parse(body).completeOrders;
+            data = JSON.parse(body);
         } catch (e) {
             console.log(e)
             return;
         }
+        console.log(data.errorCode)
+        data = data.completeOrders
         let currentCoinPrice = data[data.length - 1].price;
 
         initCoin(coin, id_index, currentCoinPrice);
