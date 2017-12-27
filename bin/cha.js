@@ -103,7 +103,7 @@ function getPrice(coin, id_index) {
 }
 
 let scheduleCronstyle = () => {
-    let time_interval = 1000
+    let time_interval = 1500
 
     setInterval(() => {
             // 循环
