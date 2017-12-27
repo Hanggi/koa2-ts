@@ -100,7 +100,7 @@ let scheduleCronstyle = () => {
     }, time_interval);
 }
     
-scheduleCronstyle();
+// scheduleCronstyle();
 
 function getArr() {
     if (coinArr.length >= 8) {
