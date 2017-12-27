@@ -103,7 +103,7 @@ function getPrice(coin, id_index) {
 }
 
 let scheduleCronstyle = () => {
-    let time_interval = 1500
+    let time_interval = 1000
 
     setInterval(() => {
             // 循环
@@ -230,7 +230,7 @@ function ready() {
                     // console.log( current.index)
                     // console.log( i)
                     // console.log((current.index == b) + " - " + Number(Arr[i][b].trim()))
-                    if ( maxArr[i] == Number(Arr[i][b].trim()) && current.index == i && maxArr[i] > 0) {
+                    if ( maxArr[i] == Number(Arr[i][b].trim()) && current.index == i && maxArr[i] > 2000) {
                         wt++;
                         // console.log(wt)
                     }
@@ -258,7 +258,7 @@ function hh(x, color, str, y) {
         // if (y && x == current.index) {
         if (y && x == current.index) {
             console.log(Number(str.trim()))
-            if ((Number(str.trim()) > 0 && wt > 5) || (Number(str.trim()) > 0 && wt == 0)) {
+            if ((Number(str.trim()) > 2000 && wt > 5) || (Number(str.trim()) > 2000 && wt == 0)) {
                 buy(coinPriceArr[y].name)
             }
         }
