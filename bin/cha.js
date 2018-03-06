@@ -34,7 +34,7 @@ function buy(coin) {
         Money = (coinPriceArr[current.index].price * current.qty) * 0.999
     }
     for (let i = 0; i < coinPriceArr.length; i++) {
-        // console.log(coinPriceArr[i])
+         //console.log(coinPriceArr[i])
         if (coin == coinPriceArr[i].name) {
             current.name = coin;
             current.price = coinPriceArr[i].price;
@@ -70,6 +70,7 @@ function updateCoin(coin, id, currentCoinPrice) {
 }
 
 function getPrice(coin, id_index) {
+    //console.log(coin)
     // 发送请求
     request("https://api.coinone.co.kr/trades?currency=" + coin, (err, res, body) => {
         if (err) {
@@ -87,6 +88,7 @@ function getPrice(coin, id_index) {
 
         initCoin(coin, id_index, currentCoinPrice);
 
+        //console.log(coinPriceArr)
         // 每次请求更新价格数据
         updateCoin(coin, id_index, currentCoinPrice)
 
@@ -103,7 +105,7 @@ function getPrice(coin, id_index) {
 }
 
 let scheduleCronstyle = () => {
-    let time_interval = 1000
+    let time_interval = 5000
 
     setInterval(() => {
             // 循环
@@ -116,6 +118,7 @@ let scheduleCronstyle = () => {
             getPrice("xrp", 6);
             getPrice("qtum", 7);
 
+//        console.log(123)
             // 如果 初始化完毕，开始处理
             ready()
 
@@ -126,6 +129,7 @@ let scheduleCronstyle = () => {
 let initt = true;
 function ready() {
     
+    //console.log(coinPriceArr.length)
     if (coinPriceArr.length >= 8) {
         let tmpLast;
 
@@ -258,7 +262,8 @@ function hh(x, color, str, y) {
         // if (y && x == current.index) {
         if (y && x == current.index) {
             console.log(Number(str.trim()))
-            if ((Number(str.trim()) > 2000 && wt > 5) || (Number(str.trim()) > 2000 && wt == 0)) {
+            //if ((Number(str.trim()) > 2000 && wt > 5) || (Number(str.trim()) > 2000 && wt == 0)) {
+            if ((Number(str.trim()) > 2000 && wt == 0)) {
                 buy(coinPriceArr[y].name)
             }
         }
