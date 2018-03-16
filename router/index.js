@@ -72,11 +72,12 @@ module.exports = (app) => {
     router
         .get('/', async (ctx, next) => {
 
-            await ctx.redirect("hppt://blog.hanggi.me");
+            ctx.redirect("http://blog.hanggi.me");
+            console.log("/")
 
-            await ctx.render('home', {
-                name: 'think php build '
-            });
+            // await ctx.render('home', {
+            //     name: 'think php build '
+            // });
             // ctx.body = 'think ph build';
         })
         .get('/test', async (ctx, next) => {
@@ -182,7 +183,7 @@ module.exports = (app) => {
         //     //     co: JSON.parse(res.last)
         //     // }
         // })
-        
+
         .get('/adm*', async (ctx, next) => {
             console.log(__dirname);
             await send(ctx, '/public/d/index.html');
