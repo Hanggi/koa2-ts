@@ -182,6 +182,7 @@ module.exports = (app) => {
         //     //     co: JSON.parse(res.last)
         //     // }
         // })
+        
         .get('/adm*', async (ctx, next) => {
             console.log(__dirname);
             await send(ctx, '/public/d/index.html');
