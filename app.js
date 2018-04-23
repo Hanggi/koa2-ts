@@ -1,22 +1,23 @@
-const Koa = require('koa');
-const path = require('path');
-const favicon = require('koa-favicon');
-const logger = require('koa-logger');
-const compress = require('koa-compress');
-const bodyParser = require('koa-bodyparser');
+const path 			= require('path');
+const favicon 		= require('koa-favicon');
+const logger 		= require('koa-logger');
+const compress 		= require('koa-compress');
+const bodyParser 	= require('koa-bodyparser');
+const serve 		= require('koa-static');
+const helmet 		= require('koa-helmet');
+const Koa 			= require('koa');
 
-const serve = require('koa-static');
-const render = require('koa-ejs');
+// const render 		= require('koa-ejs');
 
-const route = require('./router');
+// const route = require('./router');
 
 const app = new Koa();
 const config = require('./config.json');
 app.keys = config.keys;
 
-// koa-favicon
+// helmet, favicon, logger, bodyparser
+app.use(helmet());
 app.use(favicon(__dirname + '/public/favicon.ico'));
-// koa-logger
 app.use(logger());   // deprecated
 app.use(bodyParser());
 
@@ -28,8 +29,6 @@ app.use(bodyParser());
 //     threshold: 2048,
 //     flush: require('zlib').Z_SYNC_FLUSH
 // }));
-
-// koa-static
 app.use(serve(__dirname + '/public'));   //deprecated
 
 // koa-ejs
@@ -40,10 +39,9 @@ render(app, {
     cache: false,
     debug: true
 });
+
 // run route
 route(app);
-
-
 
 
 
