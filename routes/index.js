@@ -1,13 +1,24 @@
-
-const crypto = require('crypto');
-const request = require('request');
-const Router = require('koa-router');
-const send = require('koa-send');
+const path 			= require('path');
+const crypto 		= require('crypto');
+const request 		= require('request');
+const Router 		= require('koa-router');
+const send 			= require('koa-send');
 
 const router = new Router();
+
+const render 		= require('koa-ejs');
 // let charts = require("./charts");
 
 module.exports = (app) => {
+    // koa-ejs
+    render(app, {
+        root: path.join(__dirname, 'views'),
+        layout: null,
+        viewExt: 'html',
+        cache: false,
+        debug: true
+    });
+
     router
         .get('/', async (ctx, next) => {
 

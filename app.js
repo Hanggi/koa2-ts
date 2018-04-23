@@ -1,4 +1,3 @@
-const path 			= require('path');
 const favicon 		= require('koa-favicon');
 const logger 		= require('koa-logger');
 const compress 		= require('koa-compress');
@@ -7,7 +6,6 @@ const serve 		= require('koa-static');
 const helmet 		= require('koa-helmet');
 const Koa 			= require('koa');
 
-// const render 		= require('koa-ejs');
 
 // const route = require('./router');
 
@@ -31,17 +29,9 @@ app.use(bodyParser());
 // }));
 app.use(serve(__dirname + '/public'));   //deprecated
 
-// koa-ejs
-render(app, {
-    root: path.join(__dirname, 'views'),
-    layout: null,
-    viewExt: 'html',
-    cache: false,
-    debug: true
-});
 
 // run route
-route(app);
+require('./routes')(app);
 
 
 
