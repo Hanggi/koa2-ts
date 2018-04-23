@@ -9,6 +9,8 @@ echo "Pulling source code..."
 git clean -f
 git pull
 
+npm i
+
 echo "Done git pull."
 
 pm2 ls
