@@ -1,5 +1,5 @@
 const path 			= require('path');
-const crypto 		= require('crypto');
+// const crypto 		= require('crypto');
 const request 		= require('request');
 const Router 		= require('koa-router');
 const send 			= require('koa-send');
@@ -23,11 +23,8 @@ module.exports = (app) => {
         .get('/', async (ctx, next) => {
 
             ctx.redirect("http://blog.hanggi.me");
-            console.log("/")
-            // await ctx.render('home', {
-            //     name: 'think php build '
-            // });
-            // ctx.body = 'think ph build';
+            console.log("/");
+            // ctx.body = "index"
         })
         .get('/test', async (ctx, next) => {
             let query = JSON.stringify(ctx.query);
@@ -40,11 +37,16 @@ module.exports = (app) => {
             await send(ctx, '/public/d/index.html');
         })
         .get('/qwe', async (ctx, next) => {
-
             await ctx.render('home', {
                 name: 'koa2 '
             });
         });
+
+    router.prefix("/v1");
+    router.get('/qqq', async (ctx, next) => {
+        ctx.body = "qqq"
+    })
+
 
     app.use(router.routes());
     app.use(router.allowedMethods());

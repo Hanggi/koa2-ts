@@ -7,8 +7,6 @@ const helmet 		= require('koa-helmet');
 const Koa 			= require('koa');
 
 
-// const route = require('./router');
-
 const app = new Koa();
 const config = require('./config.json');
 app.keys = config.keys;
@@ -32,8 +30,6 @@ app.use(serve(__dirname + '/public'));   //deprecated
 
 // run route
 require('./routes')(app);
-
-
 
 
 // error handler
