@@ -4,7 +4,8 @@ const request 		= require('request');
 const Router 		= require('koa-router');
 const send 			= require('koa-send');
 
-const router = new Router();
+const router	= new Router();
+const v1		= new Router();
 
 const render 		= require('koa-ejs');
 // let charts = require("./charts");
@@ -18,12 +19,13 @@ module.exports = (app) => {
         cache: false,
         debug: true
     });
+    console.log("!!!!")
 
     router
         .get('/', async (ctx, next) => {
 
-            ctx.redirect("http://blog.hanggi.me");
             console.log("/");
+            ctx.redirect("http://blog.hanggi.me");
             // ctx.body = "index"
         })
         .get('/test', async (ctx, next) => {
@@ -41,14 +43,16 @@ module.exports = (app) => {
                 name: 'koa2 '
             });
         });
+        app.use(router.routes());
 
-    router.prefix("/v1");
-    router.get('/qqq', async (ctx, next) => {
+    v1.prefix("/v1");
+    v1.get('/qqq', async (ctx, next) => {
         ctx.body = "qqq"
     })
 
 
     app.use(router.routes());
+    app.use(v1.routes());
     app.use(router.allowedMethods());
 }
 
