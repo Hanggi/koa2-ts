@@ -34,7 +34,7 @@ module.exports = (app) => {
 			ctx.body = `This is the test page GET:${query}`;
 		})
 
-		.get('/adm*', async (ctx, next) => {
+		.get('/ng-admin*', async (ctx, next) => {
 			console.log(__dirname);
 			await ctx.render('ng-admin', {
 				name: 'ng-admin'
