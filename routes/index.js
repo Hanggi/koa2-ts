@@ -36,7 +36,10 @@ module.exports = (app) => {
 
         .get('/adm*', async (ctx, next) => {
             console.log(__dirname);
-            await send(ctx, '/public/d/index.html');
+            // await send(ctx, '/public/d/index.html');
+            await ctx.render('index', {
+                name: 'ng-admin'
+            })
         })
         .get('/qwe', async (ctx, next) => {
             await ctx.render('home', {
