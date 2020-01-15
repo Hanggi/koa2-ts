@@ -1,10 +1,23 @@
-# koa-build
+# koa2-ts
 
-quick build koa2 application.
+Koa2 web app framework written in typescript.
 
-start with pm2
+Written in typescript + koa2 + typeorm, enjoy simplest nodejs framework with type checking and covenient testing.
+
+## Install packages
+
 ```bash
-$ bin/start.sh
+$ npm i
 ```
 
-tes333
+## Run
+
+```bash
+$ npm start
+```
+
+## Test
+
+```bash
+$ npm test
+```
