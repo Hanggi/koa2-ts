@@ -1,0 +1,9 @@
+default:
+  type: postgres
+  host: localhost
+  port: 5432
+  username: postgres
+  password: 8A4CCA01D067DA3FBC60B9B87AC7F34F
+  database: koa-ts
+  entities:
+    - src/entities/*.ts
