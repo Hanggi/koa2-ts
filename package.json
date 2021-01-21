@@ -62,7 +62,7 @@
 		"lodash": "^4.17.15",
 		"nodemon": "^2.0.2",
 		"pg": "^7.18.2",
-		"socket.io": "^2.3.0",
+		"socket.io": "^2.4.0",
 		"typeorm": "^0.2.24",
 		"underscore": "^1.9.2"
 	}
