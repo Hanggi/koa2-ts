@@ -63,7 +63,7 @@
 		"nodemon": "^2.0.2",
 		"pg": "^7.18.2",
 		"socket.io": "^2.3.0",
-		"typeorm": "^0.2.24",
+		"typeorm": "^0.2.25",
 		"underscore": "^1.9.2"
 	}
 }
